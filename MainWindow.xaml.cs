@@ -2,11 +2,14 @@
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using static ellenorzo.MainWindow;
 
 namespace ellenorzo
 {
     public partial class MainWindow : Window
     {
+        private List<Student> students = new List<Student>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,6 +30,101 @@ namespace ellenorzo
             public string Dormitory { get; set; }
             public string LogNumber { get; set; }
             public string RegistrationNumber { get; set; }
+        }
+
+        //Save student's data
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (ValidateInput())
+            {
+                var student = new Student
+                {
+                    Name = txtName.Text,
+                    BirthPlace = txtBirthPlace.Text,
+                    BirthDate = dpBirthDate.SelectedDate.Value,
+                    MotherName = txtMotherName.Text,
+                    Address = txtAddress.Text,
+                    EnrollmentDate = dpEnrollmentDate.SelectedDate.Value,
+                    Major = txtMajor.Text,
+                    Class = txtClass.Text,
+                    IsBoarder = chkIsBoarder.IsChecked ?? false,
+                    Dormitory = chkIsBoarder.IsChecked == true ? txtDormitory.Text : "Nem kolis",
+                };
+
+                GenerateLogAndRegistrationNumber(student);
+
+                students.Add(student);
+                SaveStudents();
+
+                ClearInputFields();
+                MessageBox.Show("Tanuló adatai sikeresen mentve!", "Mentés", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        //Save to JSON and CSV
+        private void SaveStudents()
+        {
+            string json = JsonSerializer.Serialize(students);
+            File.WriteAllText("students.json", json);
+
+            using (var writer = new StreamWriter("students.csv"))
+            {
+                writer.WriteLine("Név,Születési hely,Születési idő,Anyja neve,Lakcím,Beiratkozás időpontja,Szak,Osztály,Kollégista,Kollégium,Napló sorszám,Törzslapszám");
+                foreach (var student in students)
+                {
+                    writer.WriteLine($"{student.Name},{student.BirthPlace},{student.BirthDate:yyyy-MM-dd},{student.MotherName},{student.Address},{student.EnrollmentDate:yyyy-MM-dd},{student.Major},{student.Class},{student.IsBoarder},{student.Dormitory},{student.LogNumber},{student.RegistrationNumber}");
+                }
+            }
+        }
+
+        private void LoadStudents()
+        {
+            if (File.Exists("students.json"))
+            {
+                string json = File.ReadAllText("students.json");
+                students = JsonSerializer.Deserialize<List<Student>>(json) ?? new List<Student>();
+            }
+        }
+
+        private void GenerateLogAndRegistrationNumber(Student student)
+        {
+            var sameClassStudents = students.Where(x => x.Class == student.Class).OrderBy(x => x.Name).ToList();
+            int logNumber = sameClassStudents.Count(x => x.EnrollmentDate.Year == student.EnrollmentDate.Year) + 1;
+            student.LogNumber = $"{logNumber}";
+
+            student.RegistrationNumber = $"{logNumber}/{student.EnrollmentDate.Year}";
+        }
+
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text) ||
+                string.IsNullOrWhiteSpace(txtBirthPlace.Text) ||
+                dpBirthDate.SelectedDate == null ||
+                string.IsNullOrWhiteSpace(txtMotherName.Text) ||
+                string.IsNullOrWhiteSpace(txtAddress.Text) ||
+                dpEnrollmentDate.SelectedDate == null ||
+                string.IsNullOrWhiteSpace(txtMajor.Text) ||
+                string.IsNullOrWhiteSpace(txtClass.Text))
+            {
+                MessageBox.Show("Minden mezőt ki kell tölteni!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ClearInputFields()
+        {
+            txtName.Clear();
+            txtBirthPlace.Clear();
+            dpBirthDate.SelectedDate = null;
+            txtMotherName.Clear();
+            txtAddress.Clear();
+            dpEnrollmentDate.SelectedDate = null;
+            txtMajor.Clear();
+            txtClass.Clear();
+            chkIsBoarder.IsChecked = false;
+            txtDormitory.Clear();
         }
 
     }

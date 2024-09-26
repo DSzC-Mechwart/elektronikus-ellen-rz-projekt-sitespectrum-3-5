@@ -5,76 +5,163 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ellenorzo"
         mc:Ignorable="d"
-        Title="Ellenorzo" Height="600" Width="1200">
-    <Grid>
-        <GroupBox Header="Tanuló adatai" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="350">
-            <StackPanel Margin="10">
-                
-                <Label Content="Név:"/>
-                <TextBox x:Name="txtName" Width="300"/>
+        Title="Ellenorzo" Height="560" Width="620"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Foreground="White"
+        AllowsTransparency="True"
+        Background="Transparent"
+        FontFamily="Cambria"
+        >
 
-                <Label Content="Születési hely:" Margin="0,10,0,0"/>
-                <TextBox x:Name="txtBirthPlace" Width="300"/>
+    <Window.Resources>
+        <!--Label Style-->
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+        <!--Checkbox Style-->
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <!--Datepicker Style-->
+        <Style TargetType="DatePicker">
+            <Setter Property="Background" Value="#1E91A5" />
+        </Style>
+        <!--Button Style-->
+        <Style TargetType="{x:Type Button}" x:Key="btn">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="#1E91A5" BorderBrush="#1E91A5" BorderThickness="0,1,1,0" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation Duration="0:0:0.150" To="10" 
+                                                            Storyboard.TargetProperty="BorderThickness" />
+                                <DoubleAnimation Duration="0:0:0.350" To="35" 
+                                                            Storyboard.TargetProperty="Height" />
+                                <DoubleAnimation Duration="0:0:0.350" To="160" 
+                                                            Storyboard.TargetProperty="Width" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation Duration="0:0:0.150" To="0" 
+                                                            Storyboard.TargetProperty="BorderThickness" />
+                                <DoubleAnimation Duration="0:0:0.350" To="30" 
+                                                            Storyboard.TargetProperty="Height" />
+                                <DoubleAnimation Duration="0:0:0.350" To="150" 
+                                                            Storyboard.TargetProperty="Width" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
 
-                <Label Content="Születési idő:" Margin="0,10,0,0"/>
-                <DatePicker x:Name="dpBirthDate" Width="300"/>
+        </Style>
+        <!--TextBox Style-->
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border CornerRadius="2" Padding="2" Background="#1E91A5" BorderBrush="White" BorderThickness="1">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Resources>
 
-                <Label Content="Anyja neve:" Margin="0,10,0,0"/>
-                <TextBox x:Name="txtMotherName" Width="300"/>
+    <Border CornerRadius="0" BorderThickness="10">
 
-                <Label Content="Lakcím:" Margin="0,10,0,0"/>
-                <TextBox x:Name="txtAddress" Width="300"/>
+        <Border CornerRadius="10" BorderThickness="10">
 
-                <Label Content="Beiratkozás időpontja:" Margin="0,10,0,0"/>
-                <DatePicker x:Name="dpEnrollmentDate" Width="300"/>
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#000B06" Offset="0.0"/>
+                    <GradientStop Color="#1E91A5" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
 
-                <Label Content="Szak:" Margin="0,10,0,0"/>
-                <TextBox x:Name="txtMajor" Width="300"/>
 
-                <Label Content="Osztály:" Margin="0,10,0,0"/>
-                <TextBox x:Name="txtClass" Width="300"/>
+            <Grid Margin="0,0,0,0">
 
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <CheckBox x:Name="chkIsBoarder" Content="Kollégista?" />
-                    <Label Content="Kollégium neve:" Margin="10,0,0,0"/>
-                    <TextBox x:Name="txtDormitory" Width="150"/>
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#000B06" Offset="0.0"/>
+                        <GradientStop Color="#1E91A5" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <GroupBox Header="Tanuló adatai" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Width="370">
+                    <StackPanel Margin="10">
+
+                        <Label Content="Név:"/>
+                        <TextBox x:Name="txtName" Width="300"/>
+
+                        <Label Content="Születési hely:" Margin="0,10,0,0"/>
+                        <TextBox x:Name="txtBirthPlace" Width="300"/>
+
+                        <Label Content="Születési idő:" Margin="0,10,0,0"/>
+                        <DatePicker x:Name="dpBirthDate" Width="300"/>
+
+                        <Label Content="Anyja neve:" Margin="0,10,0,0"/>
+                        <TextBox x:Name="txtMotherName" Width="300"/>
+
+                        <Label Content="Lakcím:" Margin="0,10,0,0"/>
+                        <TextBox x:Name="txtAddress" Width="300"/>
+
+                        <Label Content="Beiratkozás időpontja:" Margin="0,10,0,0"/>
+                        <DatePicker x:Name="dpEnrollmentDate" Width="300"/>
+
+                        <Label Content="Szak:" Margin="0,10,0,0"/>
+                        <TextBox x:Name="txtMajor" Width="300"/>
+
+                        <Label Content="Osztály:" Margin="0,10,0,0"/>
+                        <TextBox x:Name="txtClass" Width="300"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <CheckBox x:Name="chkIsBoarder" Content="Kollégista?" />
+                            <Label Content="Kollégium neve:" Margin="10,0,0,0"/>
+                            <TextBox x:Name="txtDormitory" Width="150"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,-5,0" Width="200">
+
+                    <Button x:Name="btnSave" Content="Mentés" Width="150" Height="30" Click="btnSave_Click" Style="{StaticResource btn}"/>
+
+                    <Button x:Name="btnAdmin" Content="Adminisztráció" Width="150" Height="30" Margin="0,10,0,0" Click="btnAdmin_Click" Style="{StaticResource btn}"/>
+
+                    <Button x:Name="btnExit" Content="Kilépés" Width="150" Height="30" Margin="0,10,0,0" Click="btnExit_Click" Style="{StaticResource btn}"/>
                 </StackPanel>
-            </StackPanel>
-        </GroupBox>
 
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="200">
 
-            <Button x:Name="btnSave" Content="Mentés" Width="150" Height="30" Click="btnSave_Click"/>
+            </Grid>
+        </Border>
 
-            <Button x:Name="btnAdmin" Content="Adminisztráció" Width="150" Height="30" Margin="0,10,0,0" Click="btnAdmin_Click"/>
 
-            <Button x:Name="btnExit" Content="Kilépés" Width="150" Height="30" Margin="0,10,0,0" Click="btnExit_Click"/>
-        </StackPanel>
 
-        <GroupBox Header="Tanulók" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="365,322,0,0" Width="825" Height="200">
-            <DataGrid x:Name="dgStudents" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTextColumn Header="Születési hely" Binding="{Binding BirthPlace}" Width="*"/>
-                    <DataGridTextColumn Header="Születési idő" Binding="{Binding BirthDate}" Width="*"/>
-                    <DataGridTextColumn Header="Anyja neve" Binding="{Binding MotherName}" Width="*"/>
-                    <DataGridTextColumn Header="Lakcím" Binding="{Binding Address}" Width="*"/>
-                    <DataGridTextColumn Header="Beiratkozás időpontja" Binding="{Binding EnrollmentDate}" Width="*"/>
-                    <DataGridTextColumn Header="Szak" Binding="{Binding Major}" Width="*"/>
-                    <DataGridTextColumn Header="Osztály" Binding="{Binding Class}" Width="*"/>
-                    <DataGridCheckBoxColumn Header="Kollégista" Binding="{Binding IsBoarder}" Width="*"/>
-                    <DataGridTextColumn Header="Kollégium neve" Binding="{Binding Dormitory}" Width="*"/>
-                    <DataGridTextColumn Header="Napló sorszám" Binding="{Binding LogNumber}" Width="*"/>
-                    <DataGridTextColumn Header="Törzslapszám" Binding="{Binding RegistrationNumber}" Width="*"/>
-                    <DataGridTemplateColumn Header="Műveletek" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Törlés" Click="DeleteStudent_Click" Tag="{Binding}" Width="80"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </GroupBox>
-    </Grid>
+
+    </Border>
+
+
 </Window>

@@ -8,11 +8,12 @@ namespace ellenorzo
 {
     public partial class MainWindow : Window
     {
-        private List<Student> students = new List<Student>();
+        public static List<Student> students = new List<Student>();
 
         public MainWindow()
         {
             InitializeComponent();
+            LoadStudents();
         }
 
         //Student class
@@ -62,7 +63,7 @@ namespace ellenorzo
         }
 
         //Save to JSON and CSV
-        private void SaveStudents()
+        public static void SaveStudents()
         {
             string json = JsonSerializer.Serialize(students);
             File.WriteAllText("students.json", json);
@@ -77,7 +78,7 @@ namespace ellenorzo
             }
         }
 
-        private void LoadStudents()
+        public static void LoadStudents()
         {
             if (File.Exists("students.json"))
             {
@@ -130,47 +131,10 @@ namespace ellenorzo
         //Administration
         private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
-            dgStudents.ItemsSource = null;
-            dgStudents.ItemsSource = students;
-
-            var boarderCount = students.Count(x => x.IsBoarder);
-            var debrecenCount = students.Count(x => x.Address.Contains("Debrecen"));
-            var commuterCount = students.Count(x => !x.IsBoarder);
-            var majorStat = students.GroupBy(x => x.Major)
-                                           .Select(x => new { Major = x.Key, StudentCount = x.Count() })
-                                           .ToList();
-
-            string stats = $"Kollégisták száma: {boarderCount}\nBejárósok száma: {commuterCount}\nDebreceni tanulók száma: {debrecenCount}\n\nSzakok szerinti statisztika:\n";
-
-            foreach (var stat in majorStat)
-            {
-                stats += $"{stat.Major}: {stat.StudentCount} tanuló\n";
-            }
-
-            MessageBox.Show(stats, "Statisztika", MessageBoxButton.OK, MessageBoxImage.Information);
+            var admin = new Administration();
+            admin.Show();
         }
 
-        private void DeleteStudent_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var student = button?.Tag as Student;
-
-            if (student != null)
-            {
-                var result = MessageBox.Show($"Biztosan törölni szeretnéd {student.Name} adatait?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    students.Remove(student);
-                    SaveStudents();
-
-                    dgStudents.ItemsSource = null;
-                    dgStudents.ItemsSource = students;
-
-                    MessageBox.Show($"{student.Name} sikeresen törölve lett!", "Törlés", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-            }
-        }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {

@@ -31,6 +31,7 @@ namespace ellenorzo
             public string Dormitory { get; set; }
             public string LogNumber { get; set; }
             public string RegistrationNumber { get; set; }
+            public List<Subjects.Subject> Subjects { get; set; } = new List<Subjects.Subject>();
         }
 
         //Save student's data
@@ -62,20 +63,11 @@ namespace ellenorzo
             }
         }
 
-        //Save to JSON and CSV
+        //Save to JSON
         public static void SaveStudents()
         {
             string json = JsonSerializer.Serialize(students);
             File.WriteAllText("students.json", json);
-
-            using (var writer = new StreamWriter("students.csv"))
-            {
-                writer.WriteLine("Név,Születési hely,Születési idő,Anyja neve,Lakcím,Beiratkozás időpontja,Szak,Osztály,Kollégista,Kollégium,Napló sorszám,Törzslapszám");
-                foreach (var student in students)
-                {
-                    writer.WriteLine($"{student.Name},{student.BirthPlace},{student.BirthDate:yyyy-MM-dd},{student.MotherName},{student.Address},{student.EnrollmentDate:yyyy-MM-dd},{student.Major},{student.Class},{student.IsBoarder},{student.Dormitory},{student.LogNumber},{student.RegistrationNumber}");
-                }
-            }
         }
 
         public static void LoadStudents()
@@ -135,6 +127,11 @@ namespace ellenorzo
             admin.Show();
         }
 
+        private void btnSubjects_Click(object sender, RoutedEventArgs e)
+        {
+            var subjects = new Subjects();
+            subjects.Show();
+        }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {

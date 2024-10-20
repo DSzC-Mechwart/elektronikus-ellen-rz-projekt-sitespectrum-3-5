@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace ellenorzo
+namespace Login
 {
     /// <summary>
     /// Interaction logic for App.xaml

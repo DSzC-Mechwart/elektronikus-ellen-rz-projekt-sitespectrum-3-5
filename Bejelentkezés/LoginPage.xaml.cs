@@ -75,7 +75,7 @@ namespace Login
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var student = students.FirstOrDefault(x => x.Name == Name.Text && x.Address == Password.Password);
+            var student = students.FirstOrDefault(x => x.Name == Name.Text && x.BirthPlace == Password.Password);
 
             if (student != null)
             {
@@ -99,7 +99,7 @@ namespace Login
 
         private void Enter(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            var student = students.FirstOrDefault(x => x.Name == Name.Text && x.Address == Password.Password);
+            var student = students.FirstOrDefault(x => x.Name == Name.Text && x.BirthPlace == Password.Password);
             if (student != null)
             {
                 if (e.Key == Key.Enter)

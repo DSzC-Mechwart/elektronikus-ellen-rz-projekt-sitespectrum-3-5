@@ -1,0 +1,33 @@
+﻿<Page x:Class="Login.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Login"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPage" Height="450" Width="800" MaxHeight="450" MinHeight="450" MaxWidth="800" MinWidth="800">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#000B06" Offset="0.0"/>
+                <GradientStop Color="#1E91A5" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock Foreground="White" Name="Targy" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tárgy" VerticalAlignment="Top" Width="180" Height="40" FontFamily="Calabria" Padding="65,5,5,5" Margin="10,10,0,0"/>
+        <TextBlock Foreground="White" Name="Atlag" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Átlag" VerticalAlignment="Top" Width="180" Height="40" FontFamily="Calabria" Padding="65,5,5,5" Margin="195,11,0,0"/>
+        <TextBlock Foreground="White" Name="Összatlag" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Összátlag: nincsenek jegyek" VerticalAlignment="Top" Width="357" Height="40" FontFamily="Calabria" Padding="55,5,5,5" Margin="380,11,0,0"/>
+        <StackPanel Name="NevValaszto" Margin="380,153,63,10"/>
+        <StackPanel Name="TargyPanel" Margin="10,56,610,69"/>
+        <StackPanel Name="AtlagPanel" Margin="195,55,425,69"/>
+        <TextBlock Foreground="White" x:Name="Nev" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Név:" VerticalAlignment="Top" Width="357" Height="40" FontFamily="Calabria" Padding="55,5,5,5" Margin="380,56,0,0"/>
+        <TextBox Name="Search" TextAlignment="Left" HorizontalAlignment="Left" Margin="436,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" Height="22" RenderTransformOrigin="0.509,0.45"/>
+        <Button Name="SearchButton" Click="SearchToName" Content="Keresés" HorizontalAlignment="Left" Margin="674,101,0,0" VerticalAlignment="Top" Width="63" Height="22"/>
+        <Button Click="ExitToLoginPageAdmin" Content="Kilépés" FontSize="12" HorizontalAlignment="Left" Margin="29,381,0,0" VerticalAlignment="Top" Height="29" Width="98"/>
+        <Button Click="AddGrades" Content="Jegy Hozzáadása" FontSize="12" HorizontalAlignment="Left" Margin="132,381,0,0" VerticalAlignment="Top" Height="29" Width="98"/>
+        <TextBlock Foreground="White" Name="Targynev" FontSize="15" HorizontalAlignment="Left" Margin="10,55,0,100" TextWrapping="Wrap" VerticalAlignment="Top" Height="385" Width="180" FontFamily="Calabria"/>
+        <TextBlock Foreground="White" Name="Atlagszam" FontSize="15" HorizontalAlignment="Left" Margin="195,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="385" Width="180" FontFamily="Calabria"/>
+        <TextBlock Foreground="White" Name="Nevvalaszto" HorizontalAlignment="Left" Margin="380,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="384" Width="357"/>
+    </Grid>
+</Page>

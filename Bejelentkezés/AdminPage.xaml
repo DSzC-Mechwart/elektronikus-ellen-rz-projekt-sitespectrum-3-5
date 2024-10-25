@@ -26,8 +26,5 @@
         <Button Name="SearchButton" Click="SearchToName" Content="Keresés" HorizontalAlignment="Left" Margin="674,101,0,0" VerticalAlignment="Top" Width="63" Height="22"/>
         <Button Click="ExitToLoginPageAdmin" Content="Kilépés" FontSize="12" HorizontalAlignment="Left" Margin="29,381,0,0" VerticalAlignment="Top" Height="29" Width="98"/>
         <Button Click="AddGrades" Content="Jegy Hozzáadása" FontSize="12" HorizontalAlignment="Left" Margin="132,381,0,0" VerticalAlignment="Top" Height="29" Width="98"/>
-        <TextBlock Foreground="White" Name="Targynev" FontSize="15" HorizontalAlignment="Left" Margin="10,55,0,100" TextWrapping="Wrap" VerticalAlignment="Top" Height="385" Width="180" FontFamily="Calabria"/>
-        <TextBlock Foreground="White" Name="Atlagszam" FontSize="15" HorizontalAlignment="Left" Margin="195,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="385" Width="180" FontFamily="Calabria"/>
-        <TextBlock Foreground="White" Name="Nevvalaszto" HorizontalAlignment="Left" Margin="380,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="384" Width="357"/>
     </Grid>
 </Page>

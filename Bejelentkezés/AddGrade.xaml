@@ -16,25 +16,27 @@
             </LinearGradientBrush>
         </Grid.Background>
         <TextBlock Padding="15,0,0,0" Foreground="white" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="236"><Run Language="hu-hu" Text="Jegy hozzáadása" FontSize="30" FontFamily="Cambria"/></TextBlock>
-        <TextBlock Padding="50,0,0,0" Foreground="white" HorizontalAlignment="Center" Margin="0,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="152"><Run Language="hu-hu" Text="Tárgy: " FontSize="20" FontFamily="Cambria"/></TextBlock>
-        <TextBox HorizontalAlignment="Center" Margin="0,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock Padding="50,0,0,0" Foreground="red" HorizontalAlignment="Center" Margin="0,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="152"><Run Language="hu-hu" Text="" FontSize="20" FontFamily="Cambria"/></TextBlock>
-        <TextBlock Padding="50,0,0,0" Foreground="white" HorizontalAlignment="Center" Margin="0,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="152"><Run Language="hu-hu" Text="Téma:" FontSize="20" FontFamily="Cambria"/></TextBlock>
-        <TextBox HorizontalAlignment="Center" Margin="0,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock Padding="35,0,0,0" Foreground="white" HorizontalAlignment="Center" Margin="0,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="236"><Run FontFamily="Cambria" FontSize="20" Text="Számonkérés típusa"/><Run FontFamily="Cambria" FontSize="20" Language="hu-hu" Text=":"/></TextBlock>
-        <ComboBox HorizontalAlignment="Center" Margin="0,299,0,0" VerticalAlignment="Top" Width="120" Height="22">
+        <TextBlock Padding="50,0,0,0" Foreground="white" HorizontalAlignment="Left" Margin="185,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="152"><Run Language="hu-hu" Text="Tárgy: " FontSize="20" FontFamily="Cambria"/></TextBlock>
+        <TextBox Name="subject" HorizontalAlignment="Left" Margin="200,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Name="Error" Foreground="red" HorizontalAlignment="Center" Margin="0,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="152" TextAlignment="Center"><Run Language="hu-hu" Text="Hibás adatok!" FontSize="15" FontFamily="Cambria"/></TextBlock>
+        <TextBlock Padding="50,0,0,0" Foreground="white" HorizontalAlignment="Right" Margin="0,86,185,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="152"><Run Language="hu-hu" Text="Téma:" FontSize="20" FontFamily="Cambria"/></TextBlock>
+        <TextBox Name="topic" HorizontalAlignment="Right" Margin="0,116,200,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Padding="35,0,0,0" Foreground="white" HorizontalAlignment="Left" Margin="140,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="236"><Run FontFamily="Cambria" FontSize="20" Text="Számonkérés típusa"/><Run FontFamily="Cambria" FontSize="20" Language="hu-hu" Text=":"/></TextBlock>
+        <ComboBox Name="type" HorizontalAlignment="Left" Margin="200,216,0,0" VerticalAlignment="Top" Width="120" Height="22">
             <ComboBoxItem Content="Szóbeli felelet"/>
             <ComboBoxItem Content="Írásbeli felelet"/>
             <ComboBoxItem Content="Gyakorlati feladat"/>
         </ComboBox>
-        <TextBlock Padding="100,0,0,0" Foreground="white" HorizontalAlignment="Center" Margin="0,352,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="236"><Run FontFamily="Cambria" FontSize="20" Text="Jegy"/><Run FontFamily="Cambria" FontSize="20" Language="hu-hu" Text=":"/></TextBlock>
-        <ComboBox HorizontalAlignment="Center" Margin="0,382,0,0" VerticalAlignment="Top" Width="120" Height="22">
+        <TextBlock Padding="100,0,0,0" Foreground="white" HorizontalAlignment="Right" Margin="0,186,145,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="236"><Run FontFamily="Cambria" FontSize="20" Text="Jegy"/><Run FontFamily="Cambria" FontSize="20" Language="hu-hu" Text=":"/></TextBlock>
+        <ComboBox Name="grade" HorizontalAlignment="Right" Margin="0,216,200,0" VerticalAlignment="Top" Width="120" Height="22">
             <ComboBoxItem Content="1"/>
             <ComboBoxItem Content="2"/>
             <ComboBoxItem Content="3"/>
             <ComboBoxItem Content="4"/>
             <ComboBoxItem Content="5"/>
         </ComboBox>
+        <TextBlock Foreground="white" HorizontalAlignment="Center" Margin="0,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="152" TextAlignment="Center"><Run Language="hu-hu" Text="Dátum:" FontSize="20" FontFamily="Cambria"/></TextBlock>
+        <TextBox Name="date" HorizontalAlignment="Center" Margin="0,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Click="ExitToAdminPageGrade" Content="Vissza" FontSize="12" HorizontalAlignment="Left" Margin="676,375,0,0" VerticalAlignment="Top" Height="29" Width="98"/>
         <Button Click="AddGradeBtn" Content="Hozzáadás" FontSize="12" HorizontalAlignment="Left" Margin="573,375,0,0" VerticalAlignment="Top" Height="29" Width="98"/>
     </Grid>

@@ -41,7 +41,7 @@ namespace Login
             public string LogNumber { get; set; }
             public string RegistrationNumber { get; set; }
             public List<Subject> Subjects { get; set; } = new List<Subject>();
-            public List<Grades> Grades { get; set; } = new List<Grades>();
+            public static List<Grades> TestGrades { get; set; } = new List<Grades>();
         }
 
         public class Subject
@@ -56,7 +56,7 @@ namespace Login
         public class Grades
         {
             public string Subject { get; set; }
-            public DateTime Date { get; set; }
+            public DateTime TestDate { get; set; }
             public int SubjectGrade { get; set; }
             public string Testtype { get; set; }
             public string Testtopic { get; set; }

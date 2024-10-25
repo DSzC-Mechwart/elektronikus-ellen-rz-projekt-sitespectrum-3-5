@@ -12,7 +12,6 @@ public partial class SubjectAdmin : Window
     
     private void Admin(List<Subjects.Subject> subjects)
     {
-        // Évfolyamonként csoportosítva számoljuk ki a közismereti és szakmai tantárgyak óraszámát
         var admin = subjects
             .GroupBy(t => t.Grade)
             .Select(gradeGroup => new
@@ -23,8 +22,7 @@ public partial class SubjectAdmin : Window
                 GeneralSubjects = gradeGroup.Count(t => t.Type == "Közismereti"),
                 VocationalSubjects = gradeGroup.Count(t => t.Type == "Szakmai")
             });
-
-        // Kiírjuk az eredményt a listába
+        
         foreach (var grade in admin)
         {
             lstKimutatas.Items.Add($"Évfolyam: {grade.Grade}");

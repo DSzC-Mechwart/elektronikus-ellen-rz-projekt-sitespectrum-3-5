@@ -65,11 +65,11 @@ namespace Login
                         TargyPanel.Children.Add (subjectButton);
                     };
 
-                    foreach (var grade in student1.Grades)
+                    foreach (var grade in LoginPage.Student.TestGrades)
                     {
                         int sum = 0;
                         sum += grade.SubjectGrade;
-                        int gradecounter = student1.Grades.Where(x => x.SubjectGrade == grade.SubjectGrade).Count();
+                        int gradecounter = LoginPage.Student.TestGrades.Where(x => x.SubjectGrade == grade.SubjectGrade).Count();
                         int average = sum / gradecounter;
 
                         Button averageButton = new Button
@@ -133,11 +133,11 @@ namespace Login
                             TargyPanel.Children.Add(subjectButton);
                         };
 
-                        foreach (var grade in name.Grades)
+                        foreach (var grade in LoginPage.Student.TestGrades)
                         {
                             int sum = 0;
                             sum += grade.SubjectGrade;
-                            int gradecounter = name.Grades.Where(x => x.SubjectGrade == grade.SubjectGrade).Count();
+                            int gradecounter = LoginPage.Student.TestGrades.Where(x => x.SubjectGrade == grade.SubjectGrade).Count();
                             int average = sum / gradecounter;
 
                             Button averageButton = new Button

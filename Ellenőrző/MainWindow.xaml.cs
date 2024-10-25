@@ -33,8 +33,7 @@ namespace ellenorzo
             public string RegistrationNumber { get; set; }
             public List<Subjects.Subject> Subjects { get; set; } = new List<Subjects.Subject>();
         }
-
-        //Save student's data
+        
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (ValidateInput())
@@ -62,8 +61,7 @@ namespace ellenorzo
                 MessageBox.Show("Tanuló adatai sikeresen mentve!", "Mentés", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
-        //Save to JSON
+        
         public static void SaveStudents()
         {
             string json = JsonSerializer.Serialize(students);
@@ -119,8 +117,7 @@ namespace ellenorzo
             chkIsBoarder.IsChecked = false;
             txtDormitory.Clear();
         }
-
-        //Administration
+        
         private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
             var admin = new Administration();
